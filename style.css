@@ -461,6 +461,61 @@ ul, ol {
 }
 
 /* ===========================
+   Film Strip
+=========================== */
+.film-strip {
+  margin-bottom: 28px;
+  user-select: none;
+}
+
+.film-strip__border {
+  background: #0a0a0a;
+  padding: 6px 0;
+  overflow: hidden;
+}
+
+.film-strip__holes {
+  display: flex;
+  gap: 10px;
+  padding: 0 6px;
+}
+
+.film-strip__holes span {
+  flex-shrink: 0;
+  width: 22px;
+  height: 16px;
+  border-radius: 3px;
+  background: #fff;
+  opacity: 0.85;
+}
+
+.film-strip__track {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  cursor: grab;
+  background: #0a0a0a;
+  scrollbar-width: none;
+}
+
+.film-strip__track::-webkit-scrollbar {
+  display: none;
+}
+
+.film-strip__track.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.film-strip__track .artwork {
+  flex: 0 0 260px;
+  aspect-ratio: 3 / 4;
+  border-radius: 0;
+}
+
+/* ===========================
    About
 =========================== */
 .about__grid {
