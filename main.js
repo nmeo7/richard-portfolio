@@ -17,53 +17,86 @@ navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => navLinks.classList.remove('open'));
 });
 
-// Film strip — drag to slide
-const filmTrack = document.getElementById('filmTrack');
-if (filmTrack) {
+// Horizontal tracks — drag to slide (series + film strip)
+document.querySelectorAll('.series__track, .film-strip__track').forEach(track => {
   let isDown = false;
   let startX = 0;
   let scrollLeft = 0;
 
-  filmTrack.addEventListener('mousedown', e => {
+  track.addEventListener('mousedown', e => {
     isDown = true;
-    filmTrack.classList.add('is-dragging');
-    startX = e.pageX - filmTrack.offsetLeft;
-    scrollLeft = filmTrack.scrollLeft;
+    track.classList.add('is-dragging');
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
   });
 
-  filmTrack.addEventListener('mouseleave', () => {
+  track.addEventListener('mouseleave', () => {
     isDown = false;
-    filmTrack.classList.remove('is-dragging');
+    track.classList.remove('is-dragging');
   });
 
-  filmTrack.addEventListener('mouseup', () => {
+  track.addEventListener('mouseup', () => {
     isDown = false;
-    filmTrack.classList.remove('is-dragging');
+    track.classList.remove('is-dragging');
   });
 
-  filmTrack.addEventListener('mousemove', e => {
+  track.addEventListener('mousemove', e => {
     if (!isDown) return;
     e.preventDefault();
-    const x = e.pageX - filmTrack.offsetLeft;
+    const x = e.pageX - track.offsetLeft;
     const walk = (x - startX) * 1.4;
-    filmTrack.scrollLeft = scrollLeft - walk;
+    track.scrollLeft = scrollLeft - walk;
   });
 
-  // Touch support
   let touchStartX = 0;
   let touchScrollLeft = 0;
 
-  filmTrack.addEventListener('touchstart', e => {
+  track.addEventListener('touchstart', e => {
     touchStartX = e.touches[0].pageX;
-    touchScrollLeft = filmTrack.scrollLeft;
+    touchScrollLeft = track.scrollLeft;
   }, { passive: true });
 
-  filmTrack.addEventListener('touchmove', e => {
+  track.addEventListener('touchmove', e => {
     const x = e.touches[0].pageX;
     const walk = (touchStartX - x) * 1.4;
-    filmTrack.scrollLeft = touchScrollLeft + walk;
+    track.scrollLeft = touchScrollLeft + walk;
   }, { passive: true });
+});
+
+// Modal
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImg');
+const modalClose = document.getElementById('modalClose');
+const modalBackdrop = document.getElementById('modalBackdrop');
+
+function openModal(src, alt) {
+  modalImg.src = src;
+  modalImg.alt = alt;
+  modal.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
 }
+
+function closeModal() {
+  modal.classList.remove('is-open');
+  document.body.style.overflow = '';
+  // Clear src after transition ends to avoid flash on next open
+  modal.addEventListener('transitionend', () => { modalImg.src = ''; }, { once: true });
+}
+
+document.querySelectorAll('.artwork img').forEach(img => {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', e => {
+    // Don't fire if the user was dragging
+    if (img.closest('.series__track, .film-strip__track')?.classList.contains('is-dragging')) return;
+    openModal(img.src, img.alt);
+  });
+});
+
+modalClose.addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', closeModal);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+});
 
 // Scroll fade-in
 const fadeEls = document.querySelectorAll('.series, .about__bio, .about__process, .timeline__item, .statement__quote, .contact__container');

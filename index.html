@@ -42,7 +42,7 @@
       </div>
       <div class="hero__portrait">
         <div class="hero__portrait-frame">
-          <img src="images/IMG_1264.JPG.jpeg" alt="Richard Mwizerwa" />
+          <img src="images/IMG_2985.JPG.jpeg" alt="Richard Mwizerwa" />
         </div>
       </div>
     </div>
@@ -79,7 +79,7 @@
             <span>2024</span>
           </div>
         </div>
-        <div class="series__grid series__grid--3">
+        <div class="series__track">
           <div class="artwork"><img src="images/IMG_0220.JPG.jpeg" alt="Sunrise to Sunset No. 1" loading="lazy" /></div>
           <div class="artwork"><img src="images/IMG_0221.JPG.jpeg" alt="Sunrise to Sunset No. 2" loading="lazy" /></div>
           <div class="artwork"><img src="images/IMG_0219.JPG.jpeg" alt="Sunrise to Sunset No. 3" loading="lazy" /></div>
@@ -100,7 +100,7 @@
             <span>2024</span>
           </div>
         </div>
-        <div class="series__grid series__grid--3">
+        <div class="series__track">
           <div class="artwork"><img src="images/IMG_0218.JPG.jpeg" alt="Sun &amp; Rain No. 1" loading="lazy" /></div>
           <div class="artwork"><img src="images/IMG_0222.JPG.jpeg" alt="Sun &amp; Rain No. 2" loading="lazy" /></div>
           <div class="artwork"><img src="images/IMG_0217.JPG.jpeg" alt="Sun &amp; Rain No. 3" loading="lazy" /></div>
@@ -121,7 +121,7 @@
             <span>2023</span>
           </div>
         </div>
-        <div class="series__grid series__grid--2">
+        <div class="series__track">
           <div class="artwork"><img src="images/IMG_0215.JPG.jpeg" alt="Stories in the Bark No. 1" loading="lazy" /></div>
           <div class="artwork"><img src="images/IMG_0223.JPG.jpeg" alt="Stories in the Bark No. 2" loading="lazy" /></div>
         </div>
@@ -141,7 +141,7 @@
             <span>2025</span>
           </div>
         </div>
-        <div class="series__grid series__grid--3">
+        <div class="series__track">
           <div class="artwork artwork--tall"><img src="images/IMG_7887.jpeg" alt="In the Garden No. 1" loading="lazy" /></div>
           <div class="artwork artwork--tall"><img src="images/IMG_7993.jpeg" alt="In the Garden No. 2" loading="lazy" /></div>
           <div class="artwork artwork--tall"><img src="images/IMG_8564.jpeg" alt="In the Garden No. 3" loading="lazy" /></div>
@@ -284,6 +284,15 @@
   <footer class="footer">
     <p>Richard Mwizerwa &middot; Kigali, Rwanda &middot; <span id="year"></span></p>
   </footer>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal" aria-modal="true" role="dialog" aria-label="Artwork view">
+    <button class="modal__close" id="modalClose" aria-label="Close">&times;</button>
+    <div class="modal__backdrop" id="modalBackdrop"></div>
+    <div class="modal__stage">
+      <img class="modal__img" id="modalImg" src="" alt="" />
+    </div>
+  </div>
 
   <script src="main.js"></script>
 </body>
